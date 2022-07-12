@@ -35,7 +35,7 @@ export default {
         .then((response) => {
           const singleResult = response.data.results;
           this.resultArray = singleResult;
-          console.log('array', this.resultArray);
+          this.$emit('filteredSearch', this.resultArray);
         });
     },
   },
