@@ -7,8 +7,9 @@
         id="content_search"
         name="content_search"
         placeholder="Effettua una ricerca"
+        v-model="searchValue"
       />
-      <button>Cerca</button>
+      <button @click="startSearch()">Cerca</button>
     </div>
   </div>
 </template>
@@ -16,6 +17,14 @@
 <script>
 export default {
   name: 'MyHeader',
+  data() {
+    return {
+      searchValue: '',
+    };
+  },
+  methods: {
+    startSearch() {},
+  },
 };
 </script>
 
