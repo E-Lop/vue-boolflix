@@ -1,23 +1,27 @@
 <template>
   <div>
     <ul>
-      <li v-for="(element, index) in receivedResults" :key="index">
-        {{ element.title }}
-        {{ element.original_title }}
-        {{ element.original_language }}
-        {{ element.vote_average }}
+      <li>
+        <MyDBCard
+          v-for="(element, index) in receivedResults"
+          :key="index"
+          :desiredCards="receivedResults[index]"
+        />
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import MyDBCard from './MyDBCard.vue';
+
 export default {
   name: 'MyDBList',
+  components: {
+    MyDBCard,
+  },
   data() {
-    return {
-      receivedArray: [],
-    };
+    return {};
   },
   props: {
     receivedResults: Array,
