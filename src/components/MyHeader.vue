@@ -24,7 +24,7 @@ export default {
       //   array che contiene risposta alla ricerca filtrata da input
       resultArray: [],
       apiLink:
-        'https://api.themoviedb.org/3/search/movie?api_key=8c2a59c90f2e8f4d2da84becf8da96e9&language=en-US&page=1&include_adult=false&query=',
+        'https://api.themoviedb.org/3/search/movie?api_key=8c2a59c90f2e8f4d2da84becf8da96e9&language=it-IT&page=1&include_adult=false&query=',
     };
   },
   methods: {
