@@ -8,6 +8,7 @@
         name="content_search"
         placeholder="Effettua una ricerca"
         v-model="searchValue"
+        @keyup.enter="startSearch()"
       />
       <button @click="startSearch()">Cerca</button>
     </div>
@@ -23,19 +24,55 @@ export default {
       searchValue: '',
       //   array che contiene risposta alla ricerca filtrata da input
       resultArray: [],
-      apiLink:
-        'https://api.themoviedb.org/3/search/movie?api_key=8c2a59c90f2e8f4d2da84becf8da96e9&language=it-IT&page=1&include_adult=false&query=',
+      movieResultArray: [],
+      seriesResultArray: [],
+      apiLinkRoot: 'https://api.themoviedb.org/3/search/',
+      apiLinkMovie: 'movie?',
+      apiLinkSeries: 'tv?',
+      apiLinkKey: 'api_key=8c2a59c90f2e8f4d2da84becf8da96e9',
+      apiLinkLanguage: '&language=it-IT',
+      apiLinkEnd: '&page=1&include_adult=false',
+      apiLinkQuery: '&query=',
     };
   },
   methods: {
     startSearch() {
       axios
-        //   il link è fatto da una radice fissa + input utente in cui spazi sostituiti da +
-        .get(this.apiLink + this.searchValue.replace(/\s+/g, '+'))
+        //   chiamata per i film
+        .get(
+          this.apiLinkRoot +
+            this.apiLinkMovie +
+            this.apiLinkKey +
+            this.apiLinkLanguage +
+            this.apiLinkEnd +
+            this.apiLinkQuery +
+            this.searchValue.replace(/\s+/g, '+')
+        )
         .then((response) => {
-          const singleResult = response.data.results;
-          this.resultArray = singleResult;
-          this.$emit('filteredSearch', this.resultArray);
+          const firstResult = response.data.results;
+          this.movieResultArray = firstResult;
+          this.$emit('filteredMovieSearch', this.movieResultArray);
+        })
+        .catch((error) => {
+          console.log('Errore', error);
+        });
+      //   chiamata per serie tv
+      axios
+        .get(
+          this.apiLinkRoot +
+            this.apiLinkSeries +
+            this.apiLinkEnd +
+            this.apiLinkKey +
+            this.apiLinkLanguage +
+            this.searchValue.replace(/\s+/g, '+')
+        )
+        .then((response) => {
+          const secondResult = response.data.results;
+          this.seriesResultArray = secondResult;
+          this.$emit('filteredSeriesSearch', this.seriesResultArray);
+        })
+        .catch((error) => {
+          console.log('Errore', error);
         });
     },
   },

@@ -1,14 +1,27 @@
 <template>
   <div>
-    <ul>
-      <li>
-        <MyDBCard
-          v-for="(element, index) in receivedResults"
-          :key="index"
-          :desiredCards="receivedResults[index]"
-        />
-      </li>
-    </ul>
+    <div class="film">
+      <ul>
+        <li>
+          <MyDBCard
+            v-for="(movie, index) in receivedMovieResults"
+            :key="index"
+            :desiredMovieCards="receivedMovieResults[index]"
+          />
+        </li>
+      </ul>
+    </div>
+    <div class="serie">
+      <ul>
+        <li>
+          <MyDBCard
+            v-for="(series, index) in receivedSeriesResults"
+            :key="index"
+            :desiredSeriesCards="receivedSeriesResults[index]"
+          />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -24,7 +37,8 @@ export default {
     return {};
   },
   props: {
-    receivedResults: Array,
+    receivedMovieResults: Array,
+    receivedSeriesResults: Array,
   },
   methods: {
     showFilteredContent() {

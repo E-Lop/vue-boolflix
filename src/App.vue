@@ -1,7 +1,14 @@
 <template>
   <div id="app">
-    <MyHeader @filteredSearch="showFilteredResults" />
-    <MyDBList :receivedResults="resultsToDisplay" />
+    <MyHeader
+      @filteredMovieSearch="showMovieFilteredResults"
+      @filteredSeriesSearch="showSeriesFilteredResults"
+    />
+
+    <MyDBList
+      :receivedMovieResults="movieResultsToDisplay"
+      :receivedSeriesResults="movieResultsToDisplay"
+    />
   </div>
 </template>
 
@@ -18,12 +25,16 @@ export default {
   data() {
     return {
       // array ricevuto tramite emit
-      resultsToDisplay: [],
+      movieResultsToDisplay: [],
+      seriesResultsToDisplay: [],
     };
   },
   methods: {
-    showFilteredResults(resultArray) {
-      this.resultsToDisplay = resultArray;
+    showMovieFilteredResults(resultArray) {
+      this.movieResultsToDisplay = resultArray;
+    },
+    showSeriesFilteredResults(resultArray) {
+      this.seriesResultsToDisplay = resultArray;
     },
   },
 };

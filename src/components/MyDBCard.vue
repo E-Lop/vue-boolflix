@@ -1,17 +1,39 @@
 <template>
-  <div class="item_card">
-    <div class="titolo">Titolo: {{ desiredCards.title }}</div>
-    <div class="titolo_originale">
-      Titolo originale: {{ desiredCards.original_title }}
+  <div class="total">
+    <div class="film">
+      <h2>Film</h2>
+      <div class="item_card">
+        <div class="titolo">Titolo: {{ desiredMovieCards.title }}</div>
+        <div class="titolo_originale">
+          Titolo originale: {{ desiredMovieCards.original_title }}
+        </div>
+        <div id="lingua">
+          Lingua originale:
+          <img
+            :src="flagRoot + fixFlag(desiredMovieCards.original_language)"
+            alt="Bandiera flag"
+          />
+        </div>
+        <div class="voto">Voto: {{ desiredMovieCards.vote_average }}</div>
+      </div>
     </div>
-    <div id="lingua">
-      Lingua originale:
-      <img
-        :src="flagRoot + fixFlag(desiredCards.original_language)"
-        alt="Bandiera flag"
-      />
+    <div class="serie">
+      <h2>Serie TV</h2>
+      <div class="item_card">
+        <div class="titolo">Titolo: {{ desiredSeriesCards.name }}</div>
+        <div class="titolo_originale">
+          Titolo originale: {{ desiredSeriesCards.original_name }}
+        </div>
+        <div id="lingua">
+          Lingua originale:
+          <img
+            :src="flagRoot + fixFlag(desiredSeriesCards.original_language)"
+            alt="Bandiera flag"
+          />
+        </div>
+        <div class="voto">Voto: {{ desiredSeriesCards.vote_average }}</div>
+      </div>
     </div>
-    <div class="voto">Voto: {{ desiredCards.vote_average }}</div>
   </div>
 </template>
 
@@ -21,11 +43,11 @@ export default {
   data() {
     return {
       flagRoot: `https://countryflagsapi.com/svg/`,
-      // flag: this.desiredCards.original_language,
     };
   },
   props: {
-    desiredCards: Object,
+    desiredMovieCards: Object,
+    desiredSeriesCards: Object,
   },
   methods: {
     fixFlag(flag) {
