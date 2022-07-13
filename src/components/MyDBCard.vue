@@ -3,6 +3,11 @@
     <h2>Film</h2>
     <div v-if="desiredMovieCards" class="film">
       <div class="item_card">
+        <img
+          class="poster"
+          :src="posterRoot + desiredMovieCards.poster_path"
+          alt=""
+        />
         <div class="titolo">Titolo: {{ desiredMovieCards.title }}</div>
         <div class="titolo_originale">
           Titolo originale: {{ desiredMovieCards.original_title }}
@@ -44,6 +49,7 @@ export default {
   data() {
     return {
       flagRoot: `https://countryflagsapi.com/svg/`,
+      posterRoot: 'https://image.tmdb.org/t/p/w185',
     };
   },
   props: {
@@ -67,6 +73,11 @@ export default {
       }
       return flag;
     },
+    /*  getPoster(posterEnd) {
+      this.posterEnd = desiredMovieCards.poster_path;
+      return posterEnd;
+      console.log('poster', this.posterEnd);
+    }, */
   },
 };
 </script>
@@ -81,6 +92,9 @@ export default {
       display: inline-block;
     }
   }
+}
+.poster {
+  width: 185px;
 }
 h2 {
   margin-left: 10px;
