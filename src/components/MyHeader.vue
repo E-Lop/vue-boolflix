@@ -29,10 +29,10 @@ export default {
       apiLinkRoot: 'https://api.themoviedb.org/3/search/',
       apiLinkMovie: 'movie?',
       apiLinkSeries: 'tv?',
-      apiLinkKey: 'api_key=8c2a59c90f2e8f4d2da84becf8da96e9',
-      apiLinkLanguage: '&language=it-IT',
-      apiLinkEnd: '&page=1&include_adult=false',
-      apiLinkQuery: '&query=',
+      apiLinkKey: 'api_key=8c2a59c90f2e8f4d2da84becf8da96e9&',
+      apiLinkLanguage: 'language=it-IT&',
+      apiLinkEnd: 'page=1&include_adult=false&',
+      apiLinkQuery: 'query=',
     };
   },
   methods: {
@@ -64,6 +64,7 @@ export default {
             this.apiLinkEnd +
             this.apiLinkKey +
             this.apiLinkLanguage +
+            this.apiLinkQuery +
             this.searchValue.replace(/\s+/g, '+')
         )
         .then((response) => {

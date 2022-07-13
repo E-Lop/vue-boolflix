@@ -7,7 +7,7 @@
 
     <MyDBList
       :receivedMovieResults="movieResultsToDisplay"
-      :receivedSeriesResults="movieResultsToDisplay"
+      :receivedSeriesResults="seriesResultsToDisplay"
     />
   </div>
 </template>
@@ -32,9 +32,11 @@ export default {
   methods: {
     showMovieFilteredResults(resultArray) {
       this.movieResultsToDisplay = resultArray;
+      console.log('movie result array', resultArray);
     },
     showSeriesFilteredResults(resultArray) {
       this.seriesResultsToDisplay = resultArray;
+      console.log('series result array', resultArray);
     },
   },
 };

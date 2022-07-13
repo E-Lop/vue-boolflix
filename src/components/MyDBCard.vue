@@ -1,7 +1,7 @@
 <template>
   <div class="total">
-    <div class="film">
-      <h2>Film</h2>
+    <h2>Film</h2>
+    <div v-if="desiredMovieCards" class="film">
       <div class="item_card">
         <div class="titolo">Titolo: {{ desiredMovieCards.title }}</div>
         <div class="titolo_originale">
@@ -17,7 +17,8 @@
         <div class="voto">Voto: {{ desiredMovieCards.vote_average }}</div>
       </div>
     </div>
-    <div class="serie">
+
+    <div v-if="desiredSeriesCards" class="serie">
       <h2>Serie TV</h2>
       <div class="item_card">
         <div class="titolo">Titolo: {{ desiredSeriesCards.name }}</div>
@@ -80,5 +81,8 @@ export default {
       display: inline-block;
     }
   }
+}
+h2 {
+  margin-left: 10px;
 }
 </style>
