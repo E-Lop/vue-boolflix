@@ -1,7 +1,7 @@
 <template>
   <div class="total">
-    <h2>Film</h2>
     <div v-if="desiredMovieCards" class="film">
+      <h2>Film</h2>
       <div class="item_card">
         <img
           class="poster"
@@ -26,6 +26,11 @@
     <div v-if="desiredSeriesCards" class="serie">
       <h2>Serie TV</h2>
       <div class="item_card">
+        <img
+          class="poster"
+          :src="posterRoot + desiredSeriesCards.poster_path"
+          alt=""
+        />
         <div class="titolo">Titolo: {{ desiredSeriesCards.name }}</div>
         <div class="titolo_originale">
           Titolo originale: {{ desiredSeriesCards.original_name }}
