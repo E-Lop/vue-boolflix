@@ -3,8 +3,15 @@
     <div v-if="desiredMovieCards" class="film">
       <div class="item_card">
         <img
+          v-if="desiredMovieCards.poster_path"
           class="poster"
           :src="posterRoot + desiredMovieCards.poster_path"
+          alt=""
+        />
+        <img
+          v-else
+          class="poster"
+          :src="require('../assets/img/no_picture_185x278.png')"
           alt=""
         />
         <div class="titolo">Titolo: {{ desiredMovieCards.title }}</div>
@@ -18,7 +25,7 @@
             alt="Bandiera flag"
           />
         </div>
-        <div class="voto">Voto: desiredMovieCards.vote_average</div>
+        <div class="voto">Voto: {{ desiredMovieCards.vote_average }}</div>
       </div>
     </div>
 
