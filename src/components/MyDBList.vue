@@ -50,6 +50,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   overflow-x: auto;
+  background-color: lightgrey;
 }
 h2 {
   margin-left: 10px;
