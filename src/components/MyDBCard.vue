@@ -1,12 +1,13 @@
 <template>
   <div class="total">
-    <!-- parte dedicata ai film -->
+    <!-- PARTE DEDICATA AI FILM -->
     <div v-if="desiredMovieCards" class="film">
       <div
         class="item_card"
         @mouseenter="moreinfo = true"
         @mouseleave="moreinfo = false"
       >
+        <!-- senza mouseover di default visualizza le locandine -->
         <div v-if="!moreinfo" class="copertina">
           <img
             v-if="desiredMovieCards.poster_path"
@@ -22,6 +23,7 @@
             alt="Copertina di ${desiredMovieCards.title}"
           />
         </div>
+        <!-- al mouseover visualizza le informazioni del film -->
         <div v-else class="informazioni">
           <div class="titolo">Titolo: {{ desiredMovieCards.title }}</div>
           <div class="titolo_originale">
@@ -58,13 +60,16 @@
         </div>
       </div>
     </div>
-    <!-- parte dedicata alle serie tv -->
+
+    <!-- PARTE DEDICATA ALLE SERIE TV -->
+
     <div v-if="desiredSeriesCards" class="serie">
       <div
         class="item_card"
         @mouseenter="moreinfo = true"
         @mouseleave="moreinfo = false"
       >
+        <!-- al mouseover visualizza le informazioni del film -->
         <div v-if="!moreinfo" class="copertina">
           <img
             v-if="desiredSeriesCards.poster_path"
@@ -80,6 +85,7 @@
             alt=""
           />
         </div>
+        <!-- al mouseover visualizza le informazioni della serie tv -->
         <div v-else class="informazioni">
           <div class="titolo">Titolo: {{ desiredSeriesCards.name }}</div>
           <div class="titolo_originale">
@@ -115,7 +121,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 export default {
   name: 'MyDBCard',
   data() {
@@ -151,7 +157,7 @@ export default {
     getStars(api_vote) {
       return Math.round(api_vote / 2);
     },
-    getTheCast(pippo) {
+    /*     getTheCast(pippo) {
       axios
         .get(
           'https://api.themoviedb.org/3/movie/${pippo}/credits?api_key=8c2a59c90f2e8f4d2da84becf8da96e9&language=it-IT'
@@ -161,7 +167,7 @@ export default {
           this.castArray = castResult;
           console.log('cast', this.castArray);
         });
-    },
+    }, */
   },
 };
 </script>
