@@ -1,6 +1,6 @@
 <template>
   <div class="header_space">
-    <div class="logo">LOGO</div>
+    <div class="logo">BOOLFLIX</div>
     <div class="search_space">
       <input
         type="text"
@@ -82,12 +82,14 @@ export default {
 
 <style lang="scss" scoped>
 .header_space {
-  background-color: lightsalmon;
+  background-color: black;
   display: flex;
   padding: 10px;
 }
 .logo {
   width: 50%;
+  color: red;
+  font-size: 1.8rem;
 }
 .search_space {
   width: 50%;

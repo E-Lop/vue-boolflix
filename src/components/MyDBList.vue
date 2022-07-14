@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-box">
     <div class="film" v-if="receivedMovieResults.length > 0">
       <h2>Film</h2>
       <ul>
@@ -45,4 +45,23 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main-box {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+}
+h2 {
+  margin-left: 10px;
+}
+ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  li {
+    width: calc(100% / 4 - 10px);
+    display: inherit;
+  }
+}
+</style>

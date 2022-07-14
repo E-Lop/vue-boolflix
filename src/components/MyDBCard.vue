@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       flagRoot: `https://countryflagsapi.com/svg/`,
-      posterRoot: 'https://image.tmdb.org/t/p/w185',
+      posterRoot: 'https://image.tmdb.org/t/p/w342',
     };
   },
   props: {
@@ -127,6 +127,7 @@ export default {
 .item_card {
   background: lightgreen;
   margin: 10px;
+  display: inline-block;
   #lingua {
     img {
       width: 30px;
@@ -134,8 +135,13 @@ export default {
     }
   }
 }
+.item_card {
+  div {
+    overflow-wrap: break-word;
+  }
+}
 .poster {
-  width: 185px;
+  width: 342px;
 }
 h2 {
   margin-left: 10px;
