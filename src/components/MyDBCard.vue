@@ -1,7 +1,6 @@
 <template>
   <div class="total">
     <div v-if="desiredMovieCards" class="film">
-      <h2>Film</h2>
       <div class="item_card">
         <img
           class="poster"
@@ -19,12 +18,11 @@
             alt="Bandiera flag"
           />
         </div>
-        <div class="voto">Voto: {{ desiredMovieCards.vote_average }}</div>
+        <div class="voto">Voto: desiredMovieCards.vote_average</div>
       </div>
     </div>
 
     <div v-if="desiredSeriesCards" class="serie">
-      <h2>Serie TV</h2>
       <div class="item_card">
         <img
           class="poster"
@@ -55,6 +53,8 @@ export default {
     return {
       flagRoot: `https://countryflagsapi.com/svg/`,
       posterRoot: 'https://image.tmdb.org/t/p/w185',
+      onestar:
+        '<i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>',
     };
   },
   props: {
@@ -78,11 +78,6 @@ export default {
       }
       return flag;
     },
-    /*  getPoster(posterEnd) {
-      this.posterEnd = desiredMovieCards.poster_path;
-      return posterEnd;
-      console.log('poster', this.posterEnd);
-    }, */
   },
 };
 </script>

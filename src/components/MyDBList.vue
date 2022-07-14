@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="film">
+    <div class="film" v-if="receivedMovieResults.length > 0">
+      <h2>Film</h2>
       <ul>
         <li>
           <MyDBCard
@@ -11,7 +12,8 @@
         </li>
       </ul>
     </div>
-    <div class="serie">
+    <div class="serie" v-if="receivedSeriesResults.length > 0">
+      <h2>Serie TV</h2>
       <ul>
         <li>
           <MyDBCard
@@ -39,11 +41,6 @@ export default {
   props: {
     receivedMovieResults: Array,
     receivedSeriesResults: Array,
-  },
-  methods: {
-    showFilteredContent() {
-      console.log('array', arguments);
-    },
   },
 };
 </script>
