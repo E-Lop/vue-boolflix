@@ -54,6 +54,7 @@ export default {
 }
 h2 {
   margin-left: 10px;
+  padding-top: 5px;
 }
 ul {
   display: flex;

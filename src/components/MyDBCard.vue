@@ -19,7 +19,7 @@
             v-else
             class="poster"
             :src="require('../assets/img/no_picture_185x278.png')"
-            alt=""
+            alt="Copertina di ${desiredMovieCards.title}"
           />
         </div>
         <div v-else class="informazioni">
@@ -35,6 +35,7 @@
             />
           </div>
           <div class="voto">
+            Voto:
             <i
               v-for="n in getStars(desiredMovieCards.vote_average)"
               :key="n"
@@ -45,6 +46,13 @@
               :key="n"
               class="fa-regular fa-star"
             ></i>
+            <!-- tasto per rendere visibile il cast -->
+            <button
+              @click.prevent="getTheCast(desiredMovieCards.id)"
+              class="moreBtn"
+            >
+              altro
+            </button>
           </div>
           <div class="overview">Overview: {{ desiredMovieCards.overview }}</div>
         </div>
@@ -107,6 +115,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'MyDBCard',
   data() {
@@ -114,6 +123,8 @@ export default {
       flagRoot: `https://countryflagsapi.com/svg/`,
       posterRoot: 'https://image.tmdb.org/t/p/w342',
       moreinfo: false,
+      showCast: false,
+      castArray: [],
     };
   },
   props: {
@@ -139,6 +150,17 @@ export default {
     },
     getStars(api_vote) {
       return Math.round(api_vote / 2);
+    },
+    getTheCast(pippo) {
+      axios
+        .get(
+          'https://api.themoviedb.org/3/movie/${pippo}/credits?api_key=8c2a59c90f2e8f4d2da84becf8da96e9&language=it-IT'
+        )
+        .then((response) => {
+          const castResult = response.data.cast;
+          this.castArray = castResult;
+          console.log('cast', this.castArray);
+        });
     },
   },
 };
@@ -181,5 +203,13 @@ h2 {
   padding: 10px;
   font-size: 1.2rem;
   overflow-y: auto;
+}
+.voto {
+  position: relative;
+}
+.moreBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 </style>

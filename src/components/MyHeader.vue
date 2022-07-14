@@ -75,6 +75,7 @@ export default {
         .catch((error) => {
           console.log('Errore', error);
         });
+      this.searchValue = '';
     },
   },
 };
