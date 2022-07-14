@@ -19,7 +19,7 @@
           <img
             v-else
             class="poster"
-            :src="require('../assets/img/no_picture_185x278.png')"
+            :src="require('../assets/img/no_picture_342x514.png')"
             alt="Copertina di ${desiredMovieCards.title}"
           />
         </div>
@@ -56,7 +56,14 @@
               altro
             </button>
           </div>
-          <div class="overview">Overview: {{ desiredMovieCards.overview }}</div>
+          <div v-if="showCast" class="castGeneri">
+            <ul>
+              <li v-for="(actor, index) in castArray" :key="index">
+                Interprete: {{ actor.original_name }}
+              </li>
+            </ul>
+          </div>
+          <div class="overview">Trama: {{ desiredMovieCards.overview }}</div>
         </div>
       </div>
     </div>
@@ -111,9 +118,7 @@
               class="fa-regular fa-star"
             ></i>
           </div>
-          <div class="overview">
-            Overview: {{ desiredSeriesCards.overview }}
-          </div>
+          <div class="overview">Trama: {{ desiredSeriesCards.overview }}</div>
         </div>
       </div>
     </div>
@@ -121,7 +126,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 export default {
   name: 'MyDBCard',
   data() {
@@ -130,6 +135,7 @@ export default {
       posterRoot: 'https://image.tmdb.org/t/p/w342',
       moreinfo: false,
       showCast: false,
+      // castArray limitato a 5 elementi dallo splice in getTheCast
       castArray: [],
     };
   },
@@ -157,17 +163,18 @@ export default {
     getStars(api_vote) {
       return Math.round(api_vote / 2);
     },
-    /*     getTheCast(pippo) {
+    getTheCast(pippo) {
       axios
         .get(
-          'https://api.themoviedb.org/3/movie/${pippo}/credits?api_key=8c2a59c90f2e8f4d2da84becf8da96e9&language=it-IT'
+          `https://api.themoviedb.org/3/movie/${pippo}/credits?api_key=8c2a59c90f2e8f4d2da84becf8da96e9&language=it-IT`
         )
         .then((response) => {
           const castResult = response.data.cast;
-          this.castArray = castResult;
-          console.log('cast', this.castArray);
+          // lo slice prende solo i primi 5 risultati dalla risposta API
+          this.castArray = castResult.slice(0, 5);
+          this.showCast = !this.showCast;
         });
-    }, */
+    },
   },
 };
 </script>
