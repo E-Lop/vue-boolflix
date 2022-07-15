@@ -117,6 +117,20 @@
               :key="m"
               class="fa-regular fa-star"
             ></i>
+            <!-- tasto per rendere visibile il cast -->
+            <button
+              @click.prevent="getTheCast(desiredSeriesCards.id)"
+              class="moreBtn"
+            >
+              altro
+            </button>
+          </div>
+          <div v-if="showCast" class="castGeneri">
+            <ul>
+              <li v-for="(actor, index) in castArray" :key="index">
+                Interprete: {{ actor.original_name }}
+              </li>
+            </ul>
           </div>
           <div class="overview">Trama: {{ desiredSeriesCards.overview }}</div>
         </div>
